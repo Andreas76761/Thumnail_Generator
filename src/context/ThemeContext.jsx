@@ -34,13 +34,9 @@ export function ThemeProvider({ children }) {
     }
   }
 
-  if (!mounted) {
-    return <>{children}</>
-  }
-
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
-      {children}
+      {mounted ? children : null}
     </ThemeContext.Provider>
   )
 }

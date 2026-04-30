@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/Thumnail_Generator/',
+  base: process.env.NODE_ENV === 'production' ? '/Thumnail_Generator/' : '/',
   plugins: [react()],
   server: {
     port: 5173,

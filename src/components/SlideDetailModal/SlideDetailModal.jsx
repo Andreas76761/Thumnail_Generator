@@ -3,11 +3,31 @@ import toast from 'react-hot-toast'
 import './SlideDetailModal.css'
 
 export default function SlideDetailModal({ slide, presentation, onClose }) {
-  const [width, setWidth] = useState(800)
-  const [height, setHeight] = useState(600)
+  const [width, setWidth] = useState(1200)
+  const [height, setHeight] = useState(900)
   const [isResizing, setIsResizing] = useState(false)
+  const [highResImage, setHighResImage] = useState(null)
   const modalRef = useRef(null)
   const resizeHandleRef = useRef(null)
+
+  // Generate or use high-resolution image
+  useEffect(() => {
+    const generateHighRes = async () => {
+      try {
+        // Try to use the original image if available
+        if (slide.original_image) {
+          setHighResImage(slide.original_image)
+        } else if (slide.thumbnail_url) {
+          // Use thumbnail as fallback (it's already generated)
+          setHighResImage(slide.thumbnail_url)
+        }
+      } catch (error) {
+        console.error('Error generating high-res image:', error)
+        setHighResImage(slide.thumbnail_url)
+      }
+    }
+    generateHighRes()
+  }, [slide])
 
   // Handle resize
   useEffect(() => {
@@ -195,7 +215,11 @@ export default function SlideDetailModal({ slide, presentation, onClose }) {
         {/* Content */}
         <div className="slide-detail-content">
           <div className="slide-thumbnail">
-            <img src={slide.thumbnail_url} alt={`Slide ${slide.id}`} />
+            <img
+              src={highResImage || slide.thumbnail_url}
+              alt={`Slide ${slide.id}`}
+              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+            />
           </div>
         </div>
 

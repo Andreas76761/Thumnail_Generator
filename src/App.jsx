@@ -135,42 +135,31 @@ export default function App() {
     return () => clearInterval(interval)
   }, [])
 
-  // Initialize keyboard shortcuts after mount
-  useEffect(() => {
-    const initKeyboardShortcuts = () => {
-      useGlobalKeyboardShortcuts({
-        onNext: () => {
-          if (isFullscreen) {
-            // Handled by SlideshowMode component
-          }
-        },
-        onPrev: () => {
-          if (isFullscreen) {
-            // Handled by SlideshowMode component
-          }
-        },
-        onSearch: () => setActiveTab('search'),
-        onFullscreen: () => setIsFullscreen(!isFullscreen),
-        onHelp: () => setShowShortcutsDialog(true),
-        onEscape: () => {
-          if (showShortcutsDialog) {
-            setShowShortcutsDialog(false)
-          } else if (settingsPanel) {
-            setSettingsPanel(null)
-          } else if (isFullscreen) {
-            setIsFullscreen(false)
-          }
-        }
-      })
+  // Initialize keyboard shortcuts directly (must be called at top level)
+  useGlobalKeyboardShortcuts({
+    onNext: () => {
+      if (isFullscreen) {
+        // Handled by SlideshowMode component
+      }
+    },
+    onPrev: () => {
+      if (isFullscreen) {
+        // Handled by SlideshowMode component
+      }
+    },
+    onSearch: () => setActiveTab('search'),
+    onFullscreen: () => setIsFullscreen(!isFullscreen),
+    onHelp: () => setShowShortcutsDialog(true),
+    onEscape: () => {
+      if (showShortcutsDialog) {
+        setShowShortcutsDialog(false)
+      } else if (settingsPanel) {
+        setSettingsPanel(null)
+      } else if (isFullscreen) {
+        setIsFullscreen(false)
+      }
     }
-
-    // Defer keyboard shortcuts initialization
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(initKeyboardShortcuts, { timeout: 3000 })
-    } else {
-      setTimeout(initKeyboardShortcuts, 500)
-    }
-  }, [isFullscreen, showShortcutsDialog, settingsPanel])
+  })
 
   const loadDesignsFromStorage = () => {
     try {

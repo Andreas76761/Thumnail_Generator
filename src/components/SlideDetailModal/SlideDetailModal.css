@@ -30,10 +30,10 @@
   position: relative;
   resize: both;
   overflow: hidden;
-  min-width: 400px;
-  min-height: 300px;
-  max-width: 95vw;
-  max-height: 95vh;
+  min-width: 600px;
+  min-height: 450px;
+  max-width: 98vw;
+  max-height: 98vh;
   animation: slideUp 0.3s ease-out;
 }
 
