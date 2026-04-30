@@ -1,0 +1,52 @@
+{
+  "name": "presentation-designer",
+  "version": "1.0.1",
+  "description": "An intelligent PowerPoint archive and design system with AI-powered insights",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext .jsx,.js",
+    "format": "prettier --write src/",
+    "start": "vite"
+  },
+  "dependencies": {
+    "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "jszip": "^3.10.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.6.0",
+    "react-window": "^2.2.7",
+    "tesseract.js": "^4.1.1",
+    "web-vitals": "^3.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.40.0",
+    "eslint-plugin-react": "^7.32.2",
+    "postcss": "^8.4.24",
+    "prettier": "^2.8.8",
+    "tailwindcss": "^3.3.0",
+    "terser": "^5.46.2",
+    "vite": "^4.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "keywords": [
+    "powerpoint",
+    "presentation",
+    "ai",
+    "voice-chat",
+    "design-generator",
+    "archive",
+    "search",
+    "ocr"
+  ],
+  "author": "Claude",
+  "license": "MIT"
+}

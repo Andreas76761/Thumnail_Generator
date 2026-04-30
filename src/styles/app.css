@@ -1,0 +1,227 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply box-border;
+}
+
+html, body, #root {
+  @apply h-full w-full m-0 p-0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(to bottom right, #ffffff, #f9fafb, #eff6ff);
+}
+
+body {
+  @apply text-gray-700;
+}
+
+/* Professional Scrollbar Styling */
+::-webkit-scrollbar {
+  @apply w-2 h-2;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-50;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded hover:bg-gray-400;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Input Focus Styles */
+input:focus, textarea:focus, select:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2 transition-all;
+}
+
+/* Smooth Transitions */
+* {
+  transition-property: color, background-color, border-color, box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Animation Classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-border {
+  0%, 100% {
+    border-color: rgba(79, 70, 229, 0.5);
+  }
+  50% {
+    border-color: rgba(79, 70, 229, 1);
+  }
+}
+
+@keyframes sound-wave {
+  0%, 100% {
+    height: 0.5rem;
+  }
+  50% {
+    height: 1.5rem;
+  }
+}
+
+@keyframes blink {
+  0%, 49%, 100% {
+    opacity: 1;
+  }
+  50%, 99% {
+    opacity: 0;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.pulse-border {
+  animation: pulse-border 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.sound-wave {
+  animation: sound-wave 0.6s ease-in-out infinite;
+}
+
+.blink {
+  animation: blink 1s step-start infinite;
+}
+
+/* Loading Spinner */
+.spinner {
+  @apply inline-block w-4 h-4 border-2 border-indigo-500 border-t-transparent rounded-full animate-spin;
+}
+
+/* Gradients */
+.gradient-primary {
+  @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+}
+
+.gradient-hover:hover {
+  @apply from-indigo-600 via-purple-600 to-pink-600;
+}
+
+/* Card Styles */
+.card {
+  @apply bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md hover:border-blue-200 transition-all;
+}
+
+.card-interactive {
+  @apply card cursor-pointer hover:scale-105 transition-transform active:scale-95;
+}
+
+/* Badge Styles */
+.badge {
+  @apply inline-block px-3 py-1 rounded-full text-xs font-semibold;
+}
+
+.badge-primary {
+  @apply badge bg-blue-100 text-blue-700;
+}
+
+.badge-success {
+  @apply badge bg-green-100 text-green-700;
+}
+
+.badge-warning {
+  @apply badge bg-yellow-100 text-yellow-700;
+}
+
+.badge-danger {
+  @apply badge bg-red-100 text-red-700;
+}
+
+/* Button Styles */
+.btn {
+  @apply px-5 py-3 rounded-lg font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 shadow-sm hover:shadow-md;
+}
+
+.btn-primary {
+  @apply btn bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500 active:scale-95;
+}
+
+.btn-secondary {
+  @apply btn bg-gray-200 text-gray-800 hover:bg-gray-300 focus:ring-gray-400;
+}
+
+.btn-ghost {
+  @apply btn bg-transparent hover:bg-blue-50 text-blue-600;
+}
+
+/* Text Styles */
+.text-truncate {
+  @apply truncate;
+}
+
+.text-ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Responsive Grid */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+@media (max-width: 768px) {
+  .grid-auto {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+}
+
+/* Professional Enhancement Styles */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Link Styles */
+a {
+  @apply transition-colors duration-200;
+}
+
+a:hover {
+  @apply text-blue-600;
+}
+
+/* Focus Ring */
+button:focus-visible, input:focus-visible, select:focus-visible {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Print Styles */
+@media print {
+  @page {
+    size: A4;
+    margin: 1cm;
+  }
+  body {
+    @apply bg-white;
+  }
+}
