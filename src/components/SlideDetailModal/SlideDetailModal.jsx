@@ -10,23 +10,44 @@ export default function SlideDetailModal({ slide, presentation, onClose }) {
   const modalRef = useRef(null)
   const resizeHandleRef = useRef(null)
 
-  // Generate or use high-resolution image
+  // Load high-resolution image from slide
   useEffect(() => {
-    const generateHighRes = async () => {
+    const loadImage = async () => {
       try {
-        // Try to use the original image if available
-        if (slide.original_image) {
-          setHighResImage(slide.original_image)
-        } else if (slide.thumbnail_url) {
-          // Use thumbnail as fallback (it's already generated)
+        // Priority order:
+        // 1. Original image URL from database
+        // 2. High-res image URL
+        // 3. Image URL
+        // 4. Fallback to thumbnail
+        const imageSource =
+          slide.original_image_url ||
+          slide.image_url ||
+          slide.url ||
+          slide.high_res_image ||
+          slide.thumbnail_url
+
+        if (imageSource) {
+          // Verify the image can be loaded
+          const img = new Image()
+          img.onload = () => {
+            setHighResImage(imageSource)
+          }
+          img.onerror = () => {
+            console.warn('Failed to load image from:', imageSource)
+            // Fallback to thumbnail if main image fails
+            setHighResImage(slide.thumbnail_url)
+          }
+          img.src = imageSource
+        } else {
+          console.warn('No image source found for slide:', slide.id)
           setHighResImage(slide.thumbnail_url)
         }
       } catch (error) {
-        console.error('Error generating high-res image:', error)
+        console.error('Error loading image:', error)
         setHighResImage(slide.thumbnail_url)
       }
     }
-    generateHighRes()
+    loadImage()
   }, [slide])
 
   // Handle resize
